@@ -1,0 +1,3 @@
+[submodule "literature"]
+	path = literature
+	url = git@github.com:michael-hoss/literature.git

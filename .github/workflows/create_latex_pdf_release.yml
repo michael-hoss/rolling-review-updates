@@ -1,0 +1,54 @@
+name: Create latex PDF release
+on: workflow_dispatch
+jobs:
+  create_latex_pdf_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          submodules: true
+          token: ${{ secrets.MY_REPO_PAT }}
+      - name: Get current date
+        id: date
+        run: |
+          echo "::set-output name=date_with_time::$(date +'%Y-%m-%d_%H-%M-%S')"
+          echo "::set-output name=date_with_time_escaped::$(date +'%Y-%m-%d\_%H-%M-%S')"
+          echo "::set-output name=date_without_time::$(date +'%Y-%m-%d')"
+          echo "::set-output name=year::$(date +'%Y')"
+      - name: Compile latex document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: rolling_review_updates.tex
+      - name: Rename generated PDF file
+        run: mv rolling_review_updates.pdf rolling_review_updates_${{ steps.date.outputs.date_without_time }}.pdf
+        shell: bash
+      - name: Create tag with current date
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ steps.date.outputs.date_without_time }}
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ steps.date.outputs.date_without_time }}
+          artifacts: rolling_review_updates_${{ steps.date.outputs.date_without_time }}.pdf
+          body: |
+            :warning: The exported manuscript is not peer-reviewed. 
+            
+            :books: You may use the following BibTeX entry for your library or a citation. 
+            ```
+            @Misc{Hoss${{ steps.date.outputs.year }}rollingreview,
+              author       = {Michael Hoss},
+              howpublished = {GitHub preprint},
+              note         = {{v${{ steps.date.outputs.date_without_time }}}},
+              title        = {Rolling Updates on {A Review of Testing Object-Based Environment Perception for Safe Automated Driving}},
+              year         = {${{ steps.date.outputs.year }}},
+              timestamp    = {${{ steps.date.outputs.date_without_time }}},
+              url          = {https://github.com/michael-hoss/rolling-review-updates/releases/v${{ steps.date.outputs.date_without_time }}},
+            }
+            ```
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,754 @@
+\documentclass[conference]{IEEEtran}
+\pdfoutput=1    % For arXiv issues
+
+% template adapted from https://github.com/daniel-bogdoll/ConferenceTemplate
+
+% -------------------------- COLORBLIND COLORS -------------------------------
+% Use color palettes for colorblind people from
+% https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40 or https://colorbrewer2.org/
+\usepackage{xcolor}
+\definecolor{wong-black}        {HTML}{000000}
+\definecolor{wong-lightorange}  {HTML}{E69F00}
+\definecolor{wong-lightblue}    {HTML}{56B4E9}
+\definecolor{wong-green}        {HTML}{009E73}
+\definecolor{wong-yellow}       {HTML}{F0E442}
+\definecolor{wong-darkblue}     {HTML}{0072B2}
+\definecolor{wong-darkorange}   {HTML}{D55E00}
+\definecolor{wong-pink}         {HTML}{CC79A7}
+
+\definecolor{my-blue}{rgb}{0,0.0,0.6}
+\definecolor{my-red}{rgb}{0.8,0.0,0}
+
+% -------------------------- PACKAGES -------------------------------
+\usepackage{enumerate}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}   % Line breaks of long URLs in biblatex bibliography (https://tex.stackexchange.com/questions/134191/line-breaks-of-long-urls-in-biblatex-bibliography)
+
+\newcommand{\citeold}[1]{{\hypersetup{citecolor=black}\cite{#1}}}
+%\newcommand{\cite}[1]{{\hypersetup{citecolor=my-red,citebordercolor=my-red}{\cite{#1}}}}
+
+\newcommand{\new}[1]{{\color{my-red}#1}}
+
+% Use these to always use Fig. and Sec. instead of worrying about Figure, Fig, Fig. etc in the document
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\secref}[1]{Sec.~\ref{#1}}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage[nolist, nohyperlinks, printonlyused]{acronym} % For consistent acronyms
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+\newcommand\nnfootnote[1]{  % Footnote without hyperref association (https://tex.stackexchange.com/questions/415625/avoiding-hyperref-warning-ignoring-empty-anchor)
+  \begin{NoHyper}
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \end{NoHyper}
+}
+
+%\usepackage[backend=biber]{biblatex}
+
+%%% some other stuff
+
+\usepackage{csquotes}
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false, font=normalsize, labelfont=sf, textfont=sf]{subfig}
+\else
+\usepackage[caption=false, font=footnotesize]{subfig}
+\fi
+
+\usepackage[roman]{parnotes}
+\makeatletter
+\def\parnoteclear{%
+	\gdef\PN@text{}%
+	\parnotereset
+}
+
+
+%% orcid logo
+\usepackage{scalerel}
+\usepackage{tikz}
+\usetikzlibrary{svg.path}
+
+
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\tikzset{
+	orcidlogo/.pic={
+		\fill[orcidlogocol] svg{M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z};
+		\fill[white] svg{M86.3,186.2H70.9V79.1h15.4v48.4V186.2z}
+		svg{M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z}
+		svg{M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1C84.2,46.7,88.7,51.3,88.7,56.8z};
+	}
+}
+
+\newcommand\orcidicon[1]{\href{https://orcid.org/#1}{\mbox{\scalerel*{
+				\begin{tikzpicture}[yscale=-1,transform shape]
+					\pic{orcidlogo};
+				\end{tikzpicture}
+			}{|}}}}
+		
+\usepackage[normalem]{ulem}
+
+\usepackage{hyperref} % Working hyperlink (https://www.overleaf.com/learn/latex/Hyperlinks)
+%\hypersetup{
+	%    colorlinks=true,
+	%    citecolor=wong-darkblue,
+	%    linkcolor=wong-darkblue,
+	%    filecolor=wong-pink,      
+	%    urlcolor=wong-darkblue,
+	%    pdfpagemode=FullScreen,
+	%    }
+\hypersetup{
+	colorlinks=true,
+	allcolors=my-blue,
+	citecolor=my-red
+	%urlcolor=black
+}
+
+
+\begin{document}
+
+% -------------------------- TITLE -------------------------------
+
+\title{Rolling Updates on \textit{A Review of Testing Object-Based Environment Perception for Safe Automated Driving}}
+
+% -------------------------- AUTHORS -------------------------------
+
+%\author{\IEEEauthorblockN{Michael Hoss}
+% \IEEEauthorblockA{\IEEEauthorrefmark{2}}
+% \IEEEauthorblockA{\IEEEauthorrefmark{3}}
+%}
+
+\author{\IEEEauthorblockN{
+		Michael Hoss$^{1} \orcidicon{0000-0001-9924-7596}$
+	}
+}
+
+\maketitle
+
+\nnfootnote{$^{1}$~The author is with RWTH Aachen University, Germany. {\tt\small \href{mailto:michael.hoss@rwth-aachen.de}{michael.hoss@rwth-aachen.de}}
+	%\newline
+%This paper might be subject to frequent changes. The present document was compiled on \today.
+}
+
+% -------------------------- ACRONYMS -------------------------------
+
+%\begin{acronym}
+%    \acro{ml}[ML]{Machine Learning}
+%	\acro{cnn}[CNN]{Convolutional Neural Network}
+%	\acro{dl}[DL]{Deep Learning}
+%	\acro{ad}[AD]{Autonomous Driving}
+%\end{acronym}
+
+% -------------------------- ABSTRACT -------------------------------
+
+
+\begin{abstract}
+Our previous review paper \citeold{Hoss2022review} and its preprint \citeold{Hoss2021review} capture the authors' knowledge as of February 2021. 
+The present document aims at enriching this review by literature that was either missed previously or published later. 
+{
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\LaTeX~source code and exported PDF files of this document are public\footnote[2]{\url{https://github.com/michael-hoss/rolling-review-updates}} and researchers are encouraged to collaborate on keeping this literature overview up-to-date. 
+}
+New sources and changes to the original section structure are \new{highlighted}.
+There are no claims on completeness and quality.
+The present document was exported on \today. 
+\end{abstract}
+
+% -------------------------- KEYWORDS -------------------------------
+
+% \begin{IEEEkeywords}
+% testing, environment perception, automated vehicles
+% % component, formatting, style, styling, insert
+% \end{IEEEkeywords}
+
+% -------------------------- CONTENT -------------------------------
+
+
+
+\section{Introduction}
+\label{intro}
+
+
+
+\subsection{Motivation for a\new{n Updated} Review}
+The author's motivation for maintaining this document is to be aware of the state of the art such that further original papers tackle relevant issues and do not miss crucial previous work. 
+
+
+\subsection{Structure and Contributions}
+The contribution of this document is a list of references including short respective descriptions of how they fit into the present context. 
+No effort is made regarding the formulation of one coherent text. 
+
+\subsection{Term Definitions}
+\label{sec:definitions}
+
+ISO/TR 4804 \cite{ISO_TR_4804_2020} generally defines useful terms regarding ADS, e.g. SoL, OuT, and ADS (see below). 
+
+SAE J3016 (including the definition of Levels 0 to 5) received an update in 2021 \cite{sae2021j3016} and is now also available as an ISO specification ISO/SAE 22736 \cite{ISOSAE_22736_terms2021}.
+In addition to SAE J3016, there is now also SAE J3131:2022 \cite{sae2022j3131} (Definitions for Terms Related to Automated Driving Systems Reference Architecture).
+
+
+The taxonomy proposal by Steimle et al. \cite{Steimle2021taxonomy} could bring more clarity into the terms related to scenario-based approaches. 
+
+
+Terms related to the perception subsystem are defined in ISO 23150:2021 \cite{ISO_23150_2021_data_communication}, for example detection, feature, object, or fusion. 
+
+\subsubsection{Software reprocessing open Loop (SoL)}
+From \cite{ISO_TR_4804_2020}: ``execution of target software on hardware, whereby the software decisions have no influence on the stimulus". 
+This is potentially the most popular mode in which perception testing takes place.
+Similarly \textit{hardware open loop} (HoL). 
+
+
+\subsubsection{Object under Test (OuT)}
+From \cite{ISO_TR_4804_2020}: ``item (3.26) or element (3.14) to be tested as planned and specified". In this review, OuT refers to the perception subsystem of the subject vehicle.
+
+\subsubsection{\sout{System under Test (SUT)}} OuT replaces SUT, which was used earlier in this review.
+
+\subsubsection{Automated Driving System (ADS)}
+Both ISO/TR 4804 \cite{ISO_TR_4804_2020} and SAE J3016:2021 \cite{sae2021j3016} use ADS to refer to Level 3 and above. 
+A distinction to the more general term \textit{driving automation system}, which should not be abbreviated or capitalized, is provided in \cite{sae2021j3016}. 
+
+\subsubsection{\sout{Automated Vehicle (AV)}} According to \cite{sae2021j3016}, the adjective \textit{automated} should refer to \textit{driving} instead of to \textit{vehicles}, which lets the term \textit{automated vehicle} be deprecated.
+
+\subsubsection{Object} 
+From ISO 23150:2021 \cite{ISO_23150_2021_data_communication}: 
+``representation of a real-world entity with defined boundaries and characteristics in the vehicle coordinate system (3.7.16)".
+The standard also introduces ``potentially moving object" and appears to use it where this review would have used ``road user". 
+
+
+\section{Related Reviews, Surveys, and Overviews}
+\label{sec:related_work}
+
+The KI Absicherung (Safe AI for automated driving) project published a survey of practical methods for AI safety as one chapter within their book \cite{Houben2022inspect}.
+This survey specifically focuses on techniques to address the safety concerns that DNNs suffer from, but only partially deals with the automotive application of testing the perception subsystem. 
+
+Within the same book, the chapter by Burton et al. \cite{Burton2022safety} directly focuses on automotive environment perception, but deals more with the structure of a whole safety assurance case than with individual test methods. 
+They introduce different types of safety evidence and argue that knowledge from the different domains ML, safety, and testing, must be combined to create the necessary evidence. 
+
+Furthermore, Albrecht et al. \cite{Abrecht2021testing} review the testing of DNNs for computer vision in automated driving. 
+They focus on the generation of test inputs and a test oracle, as well as on test adequacy. 
+The authors find that several diverse test sets are needed. 
+
+A further survey about the state of the art of safety argumentation frameworks is provided by Cieslik et al. \cite{Cieslik2022argumentation}.
+
+Lou et al. \cite{Lou2022testing} conduct 100 interviews with developers of ADS about the current practices and needs of ADS testing from a software engineering perspective. 
+
+A popular review about general testing of driving automation systems was done by Huang et al. \cite{Huang2016review} already in 2016.
+
+\section{Literature Review Methods}
+\label{sec:methods}
+
+
+\subsection{Thematic Scope}
+\subsection{Literature Search Process}
+\subsubsection{Undocumented Search}
+This document of rolling updates is mostly filled by sources from undocumented search.
+
+\subsubsection{Keyword Search}
+\subsubsection{Snowballing Search}
+A clearly structured snowballing search is no longer performed, but all new publications citing the original article \cite{Hoss2022review} are considered.
+
+\section{Perception Testing in Safety Standards}
+\label{sec:standards}
+
+\subsection{ISO 26262} 
+\subsection{\new{ISO 21448:2022}} 
+
+After the initial release from 2019, an update on the SOTIF standard has been released in 2022 \cite{iso2022sotif}. 
+Most importantly, it now applies to all levels of driving automation. 
+Furthermore, the term definitions, clauses, and annexes have been reworked. 
+
+Annex C.4 ``Perception system verification and validation" could be the most relevant change for this review. 
+It introduces an incremental example process to verify and validate the OuT, which includes: 
+\begin{itemize}
+\item bench verification (BV)
+\item algorithm performance verification (APV). This corresponds to SoL (software reprocessing open loop).
+\item vehicle integration verification (VIV)
+\item test track verification (TTV)
+\item open road validation (ORV)
+\end{itemize}
+Additionally, Annex C.4 now also mentions stochastic sensor models for testing driving automation systems in simulations. 
+
+
+\subsubsection{\new{Application to Perception}}
+
+The following works by Adee et al. highlight and discuss concrete ways of implementing a SOTIF argumentation regarding the perception subsystem. 
+They treat the discovery of perception-related triggering conditions \cite{Adee2021discovery} and model these triggering conditions with Bayesian networks \cite{Adee2021bayesian} (more background information about Bayesian networks for dependability and risk analysis by Weber et al. \cite{Weber2012bayesiannetworks}).
+Furthermore, they also model uncertainties for the SOTIF argumentation \cite{adee2020uncertainty}.
+
+\subsection{NHTSA Vision and Framework}
+\subsection{UL4600}
+\subsection{UNECE R157}
+\subsection{\new{\sout{Safety First for Automated Driving}}}
+\label{sec:standards_safetyfirst}
+This white paper hardly gets mentioned anymore because its contents have merged into ISO/TR 4804.
+
+\subsection{ISO/TR 4804\new{:2020}}
+
+\new{\subsection{ISO 23150:2021}}
+
+This standard covers the data communication between sensors and a data fusion unit \cite{ISO_23150_2021_data_communication} in a detailed way that comes close to being a format description.
+It does not directly address testing, but the standardized interfaces substantiate the form of the actual data that perception tests would evaluate. 
+The 11 defined interfaces are either on object level, feature level, or detection level, or give supportive information about sensor performance and sensor health. 
+They address different sensor modalities as well as static and potentially moving objects. 
+
+
+\new{\subsection{ISO 5083}}
+
+ISO 5083 \cite{ISO_5083_safety_for_ADS} is not yet published as of October 2022, but it can be important for the topic of this review. 
+It appears to be the successor of ISO/TR 4804:2020 and will be about ADS safety, design, verification, and validation.
+
+\new{\subsection{ISO/DIS 3450x}}
+
+ISO/DIS 3450x is a series of standards about scenario-based testing.
+The first part of the series, ISO/DIS 34501 \cite{ISO_DIS_34501_2021}, contains terms and definitions. The important terms for this review, however, have already been sufficiently defined in the other standards mentioned in Sec. \ref{sec:definitions}.
+
+ISO/DIS 34502 \cite{ISO_DIS_34502_2021} is about a scenario-based safety evaluation framework and includes criticality analysis, semantic road areas, and most importantly: perception related critical scenarios in Annex C (19 pages; see also Sec. \ref{sec:scenario_gen_knowledge_driven}).
+
+\new{\subsection{IEEE P2846:2022}}
+
+This standard defines which basic assumptions should always be considered in safety-related models for ADS. 
+According to Cieslik et al. \cite{Cieslik2022argumentation}, it also features an extension of the safety envelope violation concept (RSS) \cite{IEEE2022_2846_standard}.
+However, it does not consider perception errors and the compliance with this standard also does not guarantee overall system safety in all scenarios. 
+
+
+\subsection{Summary of Safety Standards}
+
+
+
+\section{\new{Related} Activities of Perception Testing}
+\label{sec:established}
+
+\subsection{Perception Algorithm Benchmarking}
+\label{sec:developer_testing}
+
+\subsubsection{Scenarios}
+\label{sec:percBenchmarkingScenarios}
+\subsubsection{Reference Data}
+\subsubsection{Metrics}
+\label{sec:perc_algo_benchm_metrics}
+
+The metrics for perception algorithm benchmarking are called prediction quality metrics (PQM) by Sämann et al. \cite{Saemann2020strategy}.
+
+A subset of recently published PQMs follows. 
+Kowalczyk et al. \cite{Kowalczyk2022rectangle} propose a new similarity metric between rectangles. 
+
+Meltebrink et al. \cite{Meltebrink2022reda} propose the concept of the real environment detection area (REDA) for testing person detection in agricultural robotics under varying environmental influences.
+
+Besides object-level metrics, also metrics for semantic segmentation move into safety-relevant directions, see e.g. Cheng et al. \cite{Cheng2021safetymetrics}.
+
+\subsubsection{Difficulties with Association Uncertainty}
+\label{sec:association_uncertainty}
+
+% A paper that outlines all aspects influencing the classification into TP, FP, and FN is subject to the author's future work. 
+
+
+\subsubsection{Relevance for Vehicle Safety}
+\label{sec:safety_relevance_dev_metrics}
+
+
+\subsection{Object-Level Data-Driven Sensor Modeling}
+\label{sec:sensor_modeling}
+\subsubsection{System Under Test/System to be Modeled}
+\subsubsection{Scenarios}
+
+
+\subsubsection{Reference Data}
+\subsubsection{Metrics}
+
+\subsubsection{Relevance for Safety-Oriented Perception Testing}
+
+
+%\subsection{\new{Testing Deep Neural Networks}}
+%
+% include new literature here if necessary
+%
+%This new subsection is supposed to collect literature that focuses on testing DNNs rather than testing the interface between perception and planning.
+
+
+
+
+\section{Test Criteria and Metrics}
+\label{sec:axis_criteria_metrics}
+
+\subsection{\new{Classification of Metrics}}
+Sämann et al. \cite{Saemann2020strategy} propose a classification scheme for safety-relevant DNN perception metrics: 
+\begin{itemize}
+\item Prediction quality metrics (PQM): typical metrics for perception algorithm benchmarking, see \ref{sec:perc_algo_benchm_metrics}.
+\item Efficiency metrics: how fast in inference, how much memory, how many DNN parameters etc.
+\item Safety metrics: ``safety" of the DNN, not safety as in absence of accidents in traffic. Includes the internals of the DNN to unravel its uncertainty and similar properties through heat maps etc.
+\item Data metrics: quality of the data sets. Describe coverage, reference data quality, realism of simulated data etc. 
+\end{itemize}
+
+Additionally, \textit{\textbf{task-oriented metrics}}, which consider the relevance for the downstream driving function, are likely the most important metric category for this review. 
+
+\subsection{Specification of Requirements and Criteria}
+\label{sec:requirements}
+
+The work by Stellet et al. \cite{Stellet2019formalization} helps to differentiate the terms required, specified, and implemented behavior.
+While the actually required behavior is only known from an omniscient perspective, the specified behavior is what has been made explicit about it. 
+Assumptions are needed to make requirements in an open-world context explicit. 
+If these assumptions are invalid or incomplete, a so-called \textit{deductive gap} can occur within the safety argumentation chain. 
+
+
+\subsubsection{The Difficulty of Specifying Perception}
+
+Specifying precisely what the OuT shall perceive boils down to the \textit{symbol grounding problem} \citeold{Salay2019partialspecifications}, which was first described by \cite{Harnad1990symbolgrounding}.
+
+Furthermore, removing manually written code from the OuT and replacing it with DNNs introduces \textit{data testing debt} \cite{Sculley2015debt}. 
+If data is therefore part of the tests (in form of a test set), it might also have to be part of the specification (?).
+
+The generation of a \textit{test oracle}, which determines whether a test passes or fails \cite{Abrecht2021testing}, is closely related to the specification of required behavior. 
+The authors mention that specifying the required behavior of ML-based systems is typically hard because no ML would be required if the problem was easy to specify.
+
+
+\subsubsection{Concrete Approaches of Specifying Perception} 
+
+Celik et al. \cite{Celik2022stpa} use system theoretic process analysis (STPA) to elicit safety requirements for machine-learning-based perception components. While the approach appears promising in the paper, its application on real data is not yet demonstrated there. 
+
+Philipp et al. \cite{Philipp2021requirements} demonstrate how accuracy requirements on the OuT can be elicited by injecting perception errors into a simulated test of the downstream planning function. 
+
+Some publications specify \textbf{areas or zones} where the OuT must detect other road users for safe vehicle operations: 
+\begin{itemize}
+\item Philipp et al. \cite{Philipp2022systematization} specify which road users are relevant for perception by means of a concept for specific areas in urban traffic.
+\item Topan et al. \cite{Topan2022zones} define interaction-dynamics-aware perception zones and seem to avoid overly simplifying assumptions on the behavior of other road users.
+\item Butz et al. \cite{Butz2020soca} introduce the so-called SOCA concept to derive ADS requirements based on zone graphs within the traffic area.
+\item Wolf et al. \cite{Wolf2021people} also use three different zones for different levels of danger in front of the subject vehicle to determine weighting factors for their task-oriented people detection metric. 
+\end{itemize}
+
+
+
+
+\subsection{Microscopic Test Criteria and Metrics} 
+\label{sec:safety_metrics_micro}
+
+\subsubsection{Heuristic for the Safety-Relevance}
+\label{sec:heuristic_safety_relevance}
+
+
+
+\subsubsection{Modeling the Perception-Control Linkage}
+\label{sec:metrics_perc_control_linkage}
+
+Wang et al. \cite{Wang2021bounding} develop formal methods to quantitatively bound perceptual DNN uncertainties and use these bounds to guarantee safe control. 
+Furthermore, they acknowledge the difficulty of this research problem by stating that more research is needed to tackle the safety of autonomous systems that rely on neural networks for perception. 
+
+The work of Kobayashi et al. \cite{Kobayashi2021} focuses more on the control part as it robustifies a controller against perceptual uncertainty.
+
+
+Related to the perception-control linkage, Stellet et al. \cite{Stellet2015propagation} address the downstream influence of perception data on criticality metrics.
+
+
+
+\subsubsection{Downstream Comparison of \new{OuT} and Reference Data \new{and Other Task-Oriented Metrics}}
+\label{sec:downstream_comparison}
+
+Philion et al. \cite{Philion2020implementingPKL} have published a follow-up paper regarding the PKL metric, where they describe how it is published as a Python package and how it is used for the nuScenes detection leaderboard.
+
+Topan et al. \cite{Topan2022zones} argue that some other task-oriented perception metrics for ADS are suited for comparing the relative performance of perception algorithms, but are not useful for verifying or validating absolute safety requirements of an ADS. Their approach of perception zones makes a further step towards safety-relevant evaluation of road user detections.
+
+Volk et al. \cite{Volk2020metric} propose a new single-score task-oriented metric $S$ (safety score) that combines concepts from established PQMs such as IoU or the CLEAR metrics with the safety concept of RSS. 
+
+Lyssenko et al. \cite{Lyssenko2021relevance} introduce the task-oriented $dIoU_\delta$ metric, which represents a maximum distance from the ego vehicle up to which all pedestrians have been perceived with an IoU of at least $\delta$. 
+
+Wolf et al. \cite{Wolf2021people} define object weighting factors that turn established metrics such as F1-score, precision, and recall into task-oriented metrics. 
+Their application is off-road people detection on construction sites and the mentioned object weights depend on their time-to-collision (TTC) and their location with respect to danger-dependent zones in front of the subject vehicle. 
+
+The Risk Ranked Recall ($R^3$) by Bansal et al. \cite{Bansal2021riskrankedrecall} classifies objects into three different risk categories.
+The three risk categories are computed based on an extrapolation of object trajectories into the future. 
+For each risk category, a separate recall is computed. 
+
+
+
+\subsection{Metrics for Uncertainty/Confidence Calibration}
+\label{sec:self_reporting_metrics}
+
+\subsubsection{Types of Uncertainty}
+\label{sec:uncertainty_forms}
+
+\subsubsection{Representations of Uncertainty}
+\label{sec:uncertainty_representations}
+
+\subsubsection{Calibration Metrics}
+\label{sec:uncertainty_metrics_detail}
+
+The paper \cite{Kueppers2020confidence} and book chapter \cite{Kueppers2022confidence} by Kueppers et al. extend the ECE metric to object detection tasks because previously, it was mostly applied to classification tasks. The detection-ECE (D-ECE) also considers geometrical bounding box properties. 
+
+\subsection{Macroscopic Metrics Towards Approval} 
+\label{sec:safety_metrics_macro}
+
+\subsubsection{Terminology: Safety vs. Reliability}
+
+\subsubsection{Mean Time Between Failures}
+
+\subsection{Summary of Test Criteria and Metrics}
+
+\section{Test Scenarios}
+\label{sec:axis_test_scenarios}
+\subsection{Adapting the Term Scenario to the Perception Context}
+\label{sec:what_are_perc_scenarios}
+
+\subsection{Description of Scenarios and ODD}
+\label{sec:describing_scenarios_odd}
+
+De Gelder et al. \cite{DeGelder2020categories} provide a comprehensive list of urban scenario categories, though not specifically for perception. 
+
+The OMEGA data format by Scholtes et al. \cite{Scholtes2022omega} is designed, among other purposes, for perception-specific and safety-oriented test scenarios.
+
+\subsection{Generating a Test Scenario Catalog}
+\label{sec:scenarios_obtaining}
+
+
+\subsubsection{Knowledge-Driven Scenario Generation} 
+\label{sec:scenario_gen_knowledge_driven}
+
+Annex C of ISO/DIS 34502 \cite{ISO_DIS_34502_2021} outlines a method to generate a catalog of critical perception-related scenarios.
+The annex declares itself as only informative, but is detailed in many aspects. 
+In particular, the sections are 
+\begin{itemize}
+\item C.1 perception limitation related critical scenarios (mostly sensor physics). It is mostly based on a cross check of causal factors and physical principles of the respective sensing technology. 
+\item C.2 blind spot related critical scenarios. It features geometrical constellations regarding blind spots.
+\item C.3 connectivity limitation scenarios. It is about scenario Layer 6 (digital map and V2X capabilities).
+\end{itemize}
+
+Scholtes and Eckstein \cite{Scholtes2021systematic} classify  influencing factors on the performance of radar-based perception by means of the six layer model \citeold{Scholtes20216lmAccess} and an orthogonal sensor level. 
+Such analyses can assist test engineers in determining a necessary set of test scenarios for the respective safety case. 
+
+
+\subsubsection{Data-Driven Scenario Generation}
+\label{sec:scenario_gen_data_driven}
+
+Test scenarios can be derived from past incidents. 
+The standard BSI 1882 \cite{BSI2021_pas1882} for data recording for incident investigation could be relevant in this context.
+
+\subsubsection{Combined Scenario Generation}
+\subsubsection{Test Scenarios Specific to the \new{OuT}}
+\subsubsection{\sout{Difficulties in }Covering the ODD with Scenarios}
+
+Skruch et al. \cite{Skruch2021completeness} propose an approach to evaluate the completeness of perception test scenarios.
+Their coverage metric is defined as the percentage of grid cells within the OuT's field of view that has already been visited by the centroid of a tracked object. 
+
+Mori et al. \cite{Mori2022discrete} argue that discretizing logical scenarios to concrete scenarios in order to test DNN-based perception systems requires a sound argumentation for the step size of parameter discretization. 
+Otherwise, interpolations between discrete test results are likely not representative.
+% interval arithmetic for bounding DNN uncertainty has its fundamental mathematical limits \cite{Mirman2021limits}
+
+\subsection{Executing Scenarios as Test Cases}
+\label{sec:executing_scenarios}
+\subsection{Training and Test Sets of Scenarios}
+\label{sec:scenarios_different_sets}
+\subsection{Summary of Test Scenarios}
+
+
+
+
+\section{Reference Data}
+\label{sec:axis_ref_data}
+
+The dissertation of Brahmi \cite{Brahmi2020diss} focuses on reference systems for testing the environment perception of driving automation systems. 
+
+\subsection{\new{Classification and Categorization}}
+Brahmi \cite{Brahmi2020diss} categorizes reference systems into three categories:
+\begin{enumerate}[I]
+\item based on environment perception of the ego vehicle
+\item based on external environment perception
+\item based on global navigation and V2X.
+\end{enumerate}
+Furthermore, Brahmi \cite{Brahmi2020diss} differentiates between interoceptive and exteroceptive sensor systems depending on whether a sensor system is part of the scenario that it perceives (see also Kruse's dissertation \cite{Kruse2013mehrobjekt}). 
+This differentiation appears to be similar to the differentiation of proprioceptive and exteroceptive sensors, which is explained in Hertzberg et al. \cite{Hertzberg2012roboter}.
+
+
+The present review article also has three main categories, but defines them differently in the following subsections:
+\begin{enumerate}[A]\setcounter{enumi}{1}
+\item from ego vehicle sensors
+\item from other road users
+\item from non road-users
+\end{enumerate}
+
+
+\subsection{Reference Data From Ego Vehicle Sensors}
+\label{sec:data_from_ego}
+
+\subsubsection{Reference from Sensors Under Test}
+
+The post-processing of sensor data under test to reference data can be either fully reliant on human labeling, semi-automated, or fully automated. 
+Philipp et al. \cite[Sec. II]{Philipp2021reference} provide an overview of literature sources that generate reference data in a semi-automated or a fully automated way. 
+
+Furthermore, Philipp et al. \cite{Philipp2021reference} generate reference data for the object properties length, width, and classification, which are constant over time, by re-processing recorded tracks forward and backward in time.
+Length and width estimates from time frames at which a tracked object was perceived particularly well are retrospectively applied to the other time frames of the track duration.
+Their generation of a classification reference consists of a decision tree that makes use of kinematic behavior, dimensional information, and classification-typical interactions with entities of an HD map.
+
+
+\subsubsection{Separate Reference Sensors on Ego Vehicle}
+
+\subsubsection{k-out-of-n-vote of High-Level Fusion Inputs}
+\label{sec:ref_data_k_out_of_n}
+
+Kryda et al. \cite{Kryda2021} apply the approach by Berk et al. \citeold{berk2019exploiting} for the first time on real data. 
+Since their approach does not explicitly compute reference data, but directly learns sensor perception reliabilities (for example, MTBFs), it is further described under \textit{Uncertainty Forecasting} (Sec. \ref{sec:uncertainty_forecasting}).
+
+
+\subsection{Reference Data from Other Road Users}
+\label{sec:data_from_other_tp}
+
+\subsubsection{RTK-GNSS-IMUs}
+\label{sec:ref_data_rtk_gnss_imu}
+
+The dissertation of Brahmi \cite{Brahmi2020diss} provides a helpful overview of the working principles of RTK-GNSS-IMUs in the context of ADS perception testing.
+
+Hajri et al. \cite{Hajri2018groundtruth} also present the generation of reference trajectories from RTK-GNSS-IMUs. They include an uncertainty propagation analysis that derives the reference object uncertainties from the uncertainties specified for their reference sensor system. 
+
+\subsubsection{Collaborative World Model Through V2X}
+\label{sec:collaborative_world_model}
+
+\subsection{Reference Data from Non-Road Users}
+\label{sec:data_from_external}
+
+\subsubsection{Reference Data from Stationary Infrastructure Sensors}
+
+The TAF-BW dataset \cite{Zipfl2020tafbw} contains road user trajectories from two intersections and comes with Lanelet2 maps, traffic light statuses, and precise recording dates, times, and locations that allow enriching the data with weather information.
+The authors mention that such data is suited to test in-vehicle perception systems, but the dataset contains no data under test. 
+
+
+\subsubsection{Reference Data from UAVs}
+\label{sec:ref_data_UAVs}
+
+Krajewski et al. \cite{Krajewski2021drone} use a drone that flies along with the subject vehicle in real traffic to generate reference data for evaluating and improving an in-vehicle perception algorithm. 
+They describe their method of tempo-spatial synchronization of the reference and the tested perception systems.
+
+
+Blachut et al. \cite{Blachut2022} provide detailed technical insights into their method for generating reference data with an UAV. 
+Their approach is capable of testing the OuT in real time and the source code is public. 
+
+\subsubsection{Reference Data from Helicopters}
+\label{sec:ref_data_helicopters}
+
+\subsection{Uncertainty in Reference Data}
+\label{sec:ref_data_uncertainty}
+
+Brahmi et al. \cite{Brahmi2013timestamping} analyze how time stamping and latency can lead to temporal uncertainty in the alignment of OuT and reference system.
+
+Reference data based on RTK-GNSS-IMUs have an accuracy of less than the specified one if their vehicle mounting and calibration happens in a non-perfect way \cite{Holder2022calibration, Brahmi2020diss}.
+
+Furthermore, Holder et al. \cite{Holder2022calibration} deal with the consideration of reference data uncertainties for reenacting real-world test drives in simulations.
+
+\subsection{\new{Requirements for Reference Data}}
+\label{sec:ref_data_requirements}
+
+Wegener et al. \cite{Wegener2012requirements} and subsequently \cite[Sec. 8]{Brahmi2020diss} elaborate the formulation of requirements on reference data. 
+They distinguish between structural requirements, which are qualitative and binary, and parametric requirements, which are quantitative. 
+Among their parametric requirements, there are direct and indirect requirements on the measurement uncertainty. 
+The indirect requirements are derived from downstream criteria such as accuracy requirements on criticality metrics. 
+This indirect concept of formulating reference system requirements appears similar to downstream task-oriented perception metrics. 
+
+\subsection{\new{Reference of the Reference Data}}
+
+As Brahmi \cite[Sec. 10, Sec. 14]{Brahmi2020diss} suggests, a promising concept to validate the reference system is to validate its individual aspects by means of different individual validation methods. 
+Accordingly, no single reference system of even higher quality is needed, but instead, the combined individual validation methods for the individual aspects form one virtual reference system. 
+
+For example, the measurement accuracy of an RTK-GNSS-IMU was validated by dynamically fixing the displacement between the ego vehicle and the target vehicle by means of a solid bar \cite[Sec. 14.2]{Brahmi2020diss}. 
+
+Holder et al. \cite{Holder2022calibration} use the concept of a so-called super-reference, which is in between the ground truth and a common reference sensor. 
+
+\subsection{Choice of Reference Data Source}
+\label{sec:ref_data_tradeoffs}
+
+\subsection{Summary of Reference Data}
+\label{sec:ref_data_conclusion}
+
+
+
+\section{Research Gaps and Challenges}
+\label{sec:discussion}
+
+\subsection{Open Issues per Testing Axis}
+\label{sec:discussion_answers}
+
+
+
+\subsection{Open Issues Between the Testing Axes}
+\label{sec:discussion_interdependencies}
+
+
+
+\subsection{Further Safety Assurance Activities Regarding Perception} 
+\label{sec:discussion_other_activities}
+
+Salay et al. \cite{Salay2021missinglink} provide a template for a safety case that links safety requirements at the system level to performance requirements at the perception component level. 
+They use the goal-structuring notation (GSN) and call the template Integration Safety Case for Perception (ISCaP).
+
+
+Sämann et al. \cite{Saemann2020strategy} discuss strategies to increase the safety in automotive DNN-based perception.
+
+
+\subsubsection{Uncertainty Prevention}
+\label{sec:uncertainty_prevention}
+
+Suitable system architectures might prevent some uncertainties. 
+Salay and Czarnecki \cite{Salay2022humaninspired} propose a safety assurable human-inspired perception architecture, in which they distinguish between Type 1 thinking, which is fast and non-conscious, and Type 2 thinking, which is slow and features conscious reasoning. 
+
+
+% Preparing for the open context with open world recognition, already from 2015 by Bendale and Boult \cite{bendale2015towards}.
+
+Since DNNs are hard to verify with traditional methods from the automotive field, their formal verification would be advantageous. 
+However, also formal verification of DNNs appears to have basic mathematical limits. 
+For example, Mirman et al. \cite{Mirman2021limits} prove that the apparently popular technique of propagating intervals through DNNs with ReLU activation is incapable of proving the robustness of classifying even only three one-dimensional data points.
+
+\subsubsection{Uncertainty Removal}
+\label{sec:uncertainty_removal}
+
+Zhong et al. \cite{Zhong2021detecting} present a method to find and mitigate so-called \textit{fusion errors}, which are safety-critical failures of the ADS that would not occur for a perfect data fusion module.
+
+
+\subsubsection{Uncertainty Tolerance}
+\label{sec:uncertainty_tolerance}
+
+Besnier et al. \cite{Besnier2021uncertainty} train an observer network along with a semantic segmentation network for inferring local uncertainties such that appropriate measures can be applied once the uncertainty becomes too large.
+
+Groß et al. \cite{Gross2022architectural} present architectural patterns for handling uncertainty during runtime, where a precise uncertainty estimation can let more agile driving behavior still be safe.
+
+Gyllenhammar et al. \cite{Gyllenhammar2022uncertainty} make use of previously determined perception failure rates for their precautionary safety approach, which also adapts the driving behavior to the perceptual uncertainty. 
+
+
+\subsubsection{Uncertainty Forecasting}
+\label{sec:uncertainty_forecasting}
+
+Kryda et al. \cite{Kryda2021} apply the approach presented by Berk et al. \cite{berk2019exploiting} on real data for the first time. 
+They use manually labeled reference data of vehicles to assess the quality of sensor perception reliabilities that have been learned without any reference data. 
+The analysis features 5 sensors with overlapping fields of view, which corresponds to their model for statistical correlations between sensors that requires at least 5 sensors.
+On a dataset of 1.5 million frames, the maximum relative error in sensor perception reliabilities was found to be around $50\%$.
+This means that the approach does indeed achieve the correct order of magnitude. 
+The authors discuss potentials for further improvement, including an increase of the size of the dataset, which can let the error decrease and let the model's confidence be more realistic. 
+
+Sadeghi et al. \cite{Sadeghi2021surrogate} speed up testing perception components in simulations by replacing the perception component by a less compute-intensive surrogate model that shows similar results. 
+
+Oboril et al. \cite{Oboril2022mtbf_ieee} provide a model for the vehicle-level MTBF that is based on the vehicle's mission profile, naturalistic driving data, and perception error rates. 
+Their work assumes that a formal validation of planners leads to the fact that ADS failures are mostly caused by perception failures.
+
+
+Besides uncertainty forecasting on a macroscopic level in terms of MTBF, other works forecast uncertainties on a microscopic detection level. 
+Note that such works could also be classified under \textit{Uncertainty Tolerance} (Sec. \ref{sec:uncertainty_tolerance}) if they work in real time.
+For example, Gu et al. \cite{Gu2022explanations} use methods of explainable AI (XAI) to let perception algorithms explain their 3D object predictions. 
+By attributing object predictions to the DNN input data, they show that FP detections can be identified even without reference data labels. 
+They do so by computing explanation concentration (XC) scores, which measure the concentration of input data attributions within a 3D object's bounding box. 
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+The rate at which potentially relevant literature for the present research question gets published is high, which makes it difficult to maintain this rolling review. 
+Therefore, the scope of included literature might have to become smaller over time. 
+However, contributions and corrections by the research community have a large potential to keep this document up-to-date and to assure its quality.
+ 
+
+
+% -------------------------- REFERENCES -------------------------------
+
+{\small
+\bibliographystyle{IEEEtran}
+\bibliography{literature/AllSourcesMHO.bib}
+}
+
+\end{document}

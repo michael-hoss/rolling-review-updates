@@ -45,7 +45,7 @@ jobs:
               author       = {Michael Hoss},
               howpublished = {GitHub preprint},
               note         = {{v${{ steps.date.outputs.date_without_time }}}},
-              title        = {Rolling Updates on {A Review of Testing Object-Based Environment Perception for Safe Automated Driving}},
+              title        = {Rolling Updates on A Review of Testing Object-Based Environment Perception for Safe Automated Driving},
               year         = {${{ steps.date.outputs.year }}},
               timestamp    = {${{ steps.date.outputs.date_without_time }}},
               url          = {https://github.com/michael-hoss/rolling-review-updates/releases/v${{ steps.date.outputs.date_without_time }}},

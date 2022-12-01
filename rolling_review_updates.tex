@@ -716,12 +716,16 @@ Gyllenhammar et al. \cite{Gyllenhammar2022uncertainty} make use of previously de
 \subsubsection{Uncertainty Forecasting}
 \label{sec:uncertainty_forecasting}
 
-Kryda et al. \cite{Kryda2021} apply the approach presented by Berk et al. \cite{berk2019exploiting} on real data for the first time. 
+Kryda et al. \cite{Kryda2021} apply the approach presented by Berk et al. \citeold{berk2019exploiting} on real data for the first time. 
 They use manually labeled reference data of vehicles to assess the quality of sensor perception reliabilities that have been learned without any reference data. 
 The analysis features 5 sensors with overlapping fields of view, which corresponds to their model for statistical correlations between sensors that requires at least 5 sensors.
 On a dataset of 1.5 million frames, the maximum relative error in sensor perception reliabilities was found to be around $50\%$.
 This means that the approach does indeed achieve the correct order of magnitude. 
 The authors discuss potentials for further improvement, including an increase of the size of the dataset, which can let the error decrease and let the model's confidence be more realistic. 
+
+
+
+Approaches similar to Berk et al. \citeold{berk2019exploiting} for estimating the reliability of a multi-sensor perception system are presented by Qiu et al. \cite{Qiu2021reliability} and Bock et al. \cite{Bock2018reliability}.
 
 Sadeghi et al. \cite{Sadeghi2021surrogate} speed up testing perception components in simulations by replacing the perception component by a less compute-intensive surrogate model that shows similar results. 
 

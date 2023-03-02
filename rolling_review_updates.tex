@@ -353,6 +353,8 @@ Besides object-level metrics, also metrics for semantic segmentation move into s
 
 \subsection{Object-Level Data-Driven Sensor Modeling}
 \label{sec:sensor_modeling}
+
+
 \subsubsection{System Under Test/System to be Modeled}
 \subsubsection{Scenarios}
 
@@ -361,6 +363,16 @@ Besides object-level metrics, also metrics for semantic segmentation move into s
 \subsubsection{Metrics}
 
 \subsubsection{Relevance for Safety-Oriented Perception Testing}
+
+
+\mbox{Piazzoni} et al. \cite{Piazzoni2023simulation} highlight the value of sensor and perception error modeling as compared to task-oriented perception testing. 
+They argue that task-oriented perception metrics (Sec. \ref{sec:downstream_comparison}) are difficult to define in a general way due to their dependence on the specific downstream behavior module. 
+Therefore, instead of modeling the behavior module in task-oriented perception metrics, the authors use the behavior module ``as is" in a virtual simulation and model the sensing and perception (S\&P) errors. 
+Since their error model is trained in a data-driven fashion, it reflects the OuT's shortcomings. 
+
+While ADS testing through perception error modeling in virtual simulations avoids the arbitrariness in the definition of perception metrics, it introduces a certain arbitrariness in modeling error types. 
+Moreover, the reason of why a virtual simulation run would fail a criticality metric can be unclear.
+It can not only be due to an insufficient OuT, but also due to an error in its error modeling, or due to the behavior module.
 
 
 %\subsection{\new{Testing Deep Neural Networks}}

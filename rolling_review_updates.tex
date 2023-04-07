@@ -239,6 +239,8 @@ Lou et al. \cite{Lou2022testing} conduct 100 interviews with developers of ADS a
 
 A popular review about general testing of driving automation systems was done by Huang et al. \cite{Huang2016review} already in 2016.
 
+Pandharipande et al. \cite{Pandharipande2023review} review automotive sensing and perception and thereby include testing and safety aspects.
+
 \section{Literature Review Methods}
 \label{sec:methods}
 
@@ -353,6 +355,10 @@ Besides object-level metrics, also metrics for semantic segmentation move into s
 
 \subsection{Object-Level Data-Driven Sensor Modeling}
 \label{sec:sensor_modeling}
+
+Innes and Ramamoorthy \cite{Innes2022testing} use a surrogate model of the OuT (``sensor model" in this review) to forecast failures of the perception-control system in a simulation. 
+By specifically sampling important scenarios in the simulation, they can calculate failure probabilities with a reduced test effort. 
+However, a failure observed by this test method can be attributed to either the perception or the planning subsystem, or the interaction of both. 
 
 
 \subsubsection{System Under Test/System to be Modeled}
@@ -693,11 +699,18 @@ Holder et al. \cite{Holder2022calibration} use the concept of a so-called super-
 \subsection{Further Safety Assurance Activities Regarding Perception} 
 \label{sec:discussion_other_activities}
 
+\subsubsection{\new{Safety cases, argumentations, and overall methodologies}}
+
 Salay et al. \cite{Salay2021missinglink} provide a template for a safety case that links safety requirements at the system level to performance requirements at the perception component level. 
 They use the goal-structuring notation (GSN) and call the template Integration Safety Case for Perception (ISCaP).
 
+The Assuring Autonomy International Programme has published guidance on safety-assurance for machine learning-based autonomous systems (AMLAS) \cite{Hawkins2021amlas}. Its scope is general such that it does not only apply to the automotive field.
 
-Strategies to increase the safety in automotive DNN-based perception are discussed by Sämann et al. \cite{Saemann2020strategy} and Kaneko et al. \cite{Kaneko2023safety}.
+A concrete safety case for an ML-based perception component is provided by Borg et al. \cite{Borg2022smirk}, which is based on ISO 21448 and AMLAS \cite{Hawkins2021amlas}.
+A follow-up publication \cite{Henriksson2023ood} details out-of-distribution detections as a safety measure in such a safety case.
+
+
+Additionally, strategies to increase the safety in automotive DNN-based perception are also discussed by Sämann et al. \cite{Saemann2020strategy} and Kaneko et al. \cite{Kaneko2023safety}.
 
 
 \subsubsection{Uncertainty Prevention}
@@ -749,6 +762,8 @@ The authors discuss potentials for further improvement, including an increase of
 Approaches similar to Berk et al. \citeold{berk2019exploiting} for estimating the reliability of a multi-sensor perception system are presented by Qiu et al. \cite{Qiu2021reliability} and Bock et al. \cite{Bock2018reliability}.
 
 Sadeghi et al. \cite{Sadeghi2021surrogate} speed up testing perception components in simulations by replacing the perception component by a less compute-intensive surrogate model that shows similar results. 
+
+
 
 Oboril et al. \cite{Oboril2022mtbf_ieee} provide a model for the vehicle-level MTBF that is based on the vehicle's mission profile, naturalistic driving data, and perception error rates. 
 Their work assumes that a formal validation of planners leads to the fact that ADS failures are mostly caused by perception failures.

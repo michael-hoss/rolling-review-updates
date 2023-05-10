@@ -466,6 +466,8 @@ Related to the perception-control linkage, Stellet et al. \cite{Stellet2015propa
 \subsubsection{Downstream Comparison of \new{OuT} and Reference Data \new{and Other Task-Oriented Metrics}}
 \label{sec:downstream_comparison}
 
+Antonante et al. \cite{Antonante2023task_aware} provide a task-aware risk estimation of perception failures for ADS.
+
 Philion et al. \cite{Philion2020implementingPKL} have published a follow-up paper regarding the PKL metric, where they describe how it is published as a Python package and how it is used for the nuScenes detection leaderboard.
 
 Topan et al. \cite{Topan2022zones} argue that some other task-oriented perception metrics for ADS are suited for comparing the relative performance of perception algorithms, but are not useful for verifying or validating absolute safety requirements of an ADS. Their approach of perception zones makes a further step towards safety-relevant evaluation of road user detections.
@@ -475,6 +477,7 @@ Volk et al. \cite{Volk2020metric} propose a new single-score task-oriented metri
 Lyssenko et al. \cite{Lyssenko2021relevance} introduce the task-oriented $dIoU_\delta$ metric, which represents a maximum distance from the ego vehicle up to which all pedestrians have been perceived with an IoU of at least $\delta$. 
 
 In their subsequent publication, Lyssenko et al. \cite{Lyssenko2022safety} use the threat metric time-to-collision (TTC) in combination with reachability analysis to assess the safety-relevant performance of a pedestrian detector. 
+% they use IoU, but they don't come up with a new metric
 
 Wolf et al. \cite{Wolf2021people} define object weighting factors that turn established metrics such as F1-score, precision, and recall into task-oriented metrics. 
 Their application is off-road people detection on construction sites and the mentioned object weights depend on their time-to-collision (TTC) and their location with respect to danger-dependent zones in front of the subject vehicle. 

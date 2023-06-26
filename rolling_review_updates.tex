@@ -356,6 +356,8 @@ Besides object-level metrics, also metrics for semantic segmentation move into s
 \subsection{Object-Level Data-Driven Sensor Modeling}
 \label{sec:sensor_modeling}
 
+Lindenmaier et al. \cite{Lindenmaier2023sensor} do object-level data-driven sensor modeling, including existence uncertainty.
+
 Innes and Ramamoorthy \cite{Innes2022testing} use a surrogate model of the OuT (``sensor model" in this review) to forecast failures of the perception-control system in a simulation. 
 By specifically sampling important scenarios in the simulation, they can calculate failure probabilities with a reduced test effort. 
 However, a failure observed by this test method can be attributed to either the perception or the planning subsystem, or the interaction of both. 
@@ -394,6 +396,11 @@ It can not only be due to an insufficient OuT, but also due to an error in its e
 \label{sec:axis_criteria_metrics}
 
 \subsection{\new{Classification of Metrics}}
+\textit{\textbf{Task-oriented metrics}}, which consider the relevance for the downstream driving function, are likely the most important metric category for this review. 
+
+Madala and Avalos Gonzalez \cite{Madala2023metrics} propose new metrics for SOTIF analysis of ML in AD. Many of their metrics are based on existing TP/FP/FN-based metrics, but become more fine-granuar to reveal information that traditional metrics obscure (e.g. at which distance, speed, ODD condition, DNN confidence etc.).
+
+
 Sämann et al. \cite{Saemann2020strategy} propose a classification scheme for safety-relevant DNN perception metrics: 
 \begin{itemize}
 \item Prediction quality metrics (PQM): typical metrics for perception algorithm benchmarking, see \ref{sec:perc_algo_benchm_metrics}.
@@ -402,7 +409,7 @@ Sämann et al. \cite{Saemann2020strategy} propose a classification scheme for sa
 \item Data metrics: quality of the data sets. Describe coverage, reference data quality, realism of simulated data etc. 
 \end{itemize}
 
-Additionally, \textit{\textbf{task-oriented metrics}}, which consider the relevance for the downstream driving function, are likely the most important metric category for this review. 
+
 
 \subsection{Specification of Requirements and Criteria}
 \label{sec:requirements}

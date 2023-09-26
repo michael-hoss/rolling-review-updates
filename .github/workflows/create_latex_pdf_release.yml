@@ -20,7 +20,7 @@ jobs:
           echo "::set-output name=date_without_time::$(date +'%Y-%m-%d')"
           echo "::set-output name=year::$(date +'%Y')"
       - name: Compile latex document
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: rolling_review_updates.tex
       - name: Rename generated PDF file

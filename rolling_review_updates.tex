@@ -241,6 +241,8 @@ A popular review about general testing of driving automation systems was done by
 
 Pandharipande et al. \cite{Pandharipande2023review} review automotive sensing and perception and thereby include testing and safety aspects.
 
+Sun et al. \cite{Sun2024_Ensuring} review safety assurance for perception of ADS. Among other aspects, they highlight standards, the perception subsystem's architecture, and evaluation metrics.
+
 \section{Literature Review Methods}
 \label{sec:methods}
 
@@ -352,6 +354,8 @@ Besides object-level metrics, also metrics for semantic segmentation move into s
 \subsubsection{Relevance for Vehicle Safety}
 \label{sec:safety_relevance_dev_metrics}
 
+Nguyen et al. \cite{Nguyen2022_How} analyze how trustworthy existing performance evaluations of object tracking are. They focus on robustness with respect to varied evaluation parameters, meaningfulness in the given context, and mathematical consistency. For example, the authors find that the ranking of perception algorithms can vary strongly with respect to the IoU threshold for object matching.
+
 Another publication by the author \cite{Hoss2023checklistarxiv} provides a checklist to define test oracles for TP, FP, and FN objects in a way that is ideally suitable for making statements about vehicle safety. 
 
 \subsection{Object-Level Data-Driven Sensor Modeling}
@@ -426,9 +430,9 @@ If these assumptions are invalid or incomplete, a so-called \textit{deductive ga
 Specifying precisely what the OuT shall perceive boils down to the \textit{symbol grounding problem} \citeold{Salay2019partialspecifications}, which was first described by \cite{Harnad1990symbolgrounding}.
 
 Furthermore, removing manually written code from the OuT and replacing it with DNNs introduces \textit{data testing debt} \cite{Sculley2015debt}. 
-If data is therefore part of the tests (in form of a test set), it might also have to be part of the specification (?).
+If data is therefore part of the tests (in form of a test set), it might also have to be part of the specification.
 
-The generation of a \textit{test oracle}, which determines whether a test passes or fails \cite{Abrecht2021testing}, is closely related to the specification of required behavior. 
+The generation of a \textit{test oracle}, which determines whether a test passes or fails \cite{Abrecht2021testing, Hoss2023checklistarxiv}, is closely related to the specification of required behavior. 
 The authors mention that specifying the required behavior of ML-based systems is typically hard because no ML would be required if the problem was easy to specify.
 
 
@@ -449,6 +453,7 @@ Some publications specify \textbf{areas or zones} where the OuT must detect othe
 
 Mori et al. \cite{Mori2023relevance} and Storms et al. \cite{Storms2023relevance} do quantitative analyses of object relevance for perception safety in the highway and urban domain, respectively.
 Furthermore, Mori et al. \cite{Mori2023ClassificationRequirements} address classification requirements and consider human performance as a reference for ADS requirements \cite{Mori2023SHARPHumanAnalysis}. 
+The work by Mori is wrapped up in the thesis \cite{Mori2024_Defining}, which aims at defining interpretable requirements in the aspects classification, relevance, and attributes of objects. 
 
 \subsection{Microscopic Test Criteria and Metrics} 
 \label{sec:safety_metrics_micro}
@@ -456,7 +461,7 @@ Furthermore, Mori et al. \cite{Mori2023ClassificationRequirements} address class
 \subsubsection{Heuristic for the Safety-Relevance}
 \label{sec:heuristic_safety_relevance}
 
-
+Ceccarelli and Montecchi \cite{Ceccarelli2023_Evaluating} compute the relevance of target objects for the ego vehicle's driving task based on their spatial and temporal proximity. Given this, their work computes measures for safety and reliability.
 
 \subsubsection{Modeling the Perception-Control Linkage}
 \label{sec:metrics_perc_control_linkage}
@@ -637,6 +642,8 @@ The dissertation of Brahmi \cite{Brahmi2020diss} provides a helpful overview of 
 
 Hajri et al. \cite{Hajri2018groundtruth} also present the generation of reference trajectories from RTK-GNSS-IMUs. They include an uncertainty propagation analysis that derives the reference object uncertainties from the uncertainties specified for their reference sensor system. 
 
+The ViF-GTAD dataset \cite{Haas2023_ViFGTAD} is the first publicly available dataset with raw data of a full onboard sensor suite and additionally, RTK-GNSS-IMU measurements of both the ego vehicle and the target objects. 
+
 \subsubsection{Collaborative World Model Through V2X}
 \label{sec:collaborative_world_model}
 
@@ -670,6 +677,8 @@ Brahmi et al. \cite{Brahmi2013timestamping} analyze how time stamping and latenc
 Reference data based on RTK-GNSS-IMUs have an accuracy of less than the specified one if their vehicle mounting and calibration happens in a non-perfect way \cite{Holder2022calibration, Brahmi2020diss}.
 
 Furthermore, Holder et al. \cite{Holder2022calibration} deal with the consideration of reference data uncertainties for reenacting real-world test drives in simulations.
+
+Uncertainty in human labeling is discussed by Murrugarra-Llerena et al. \cite{Murrugarra-Llerena2022_Can}.
 
 \subsection{\new{Requirements for Reference Data}}
 \label{sec:ref_data_requirements}

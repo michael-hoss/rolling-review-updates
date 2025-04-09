@@ -1,0 +1,48 @@
+{
+    "files.exclude": {
+      "**/*.aux": true,
+      "**/*.log": true,
+      "**/*.out": true,
+      "**/*.toc": true,
+      "**/*.lof": true,
+      "**/*.lot": true,
+      "**/*.bbl": true,
+      "**/*.blg": true,
+      "**/*.idx": true,
+      "**/*.ilg": true,
+      "**/*.ind": true,
+      "**/*.synctex.gz": true,
+      "**/*.spl": true,
+      "**/*.fdb_latexmk": true,
+      "**/.latexmk": true,
+      "**/_build": true,        // Common output folder name
+      "**/build": true,        // Another common output folder name
+      "**/output": true,       // Yet another common output folder name
+      "**/*.fls": true,
+      "**/*.gz": true,         // Potentially for compressed output
+      "**/*.pdf": false        // You might want to see the generated PDF
+    },
+    "search.exclude": {
+      "**/*.aux": true,
+      "**/*.log": true,
+      "**/*.out": true,
+      "**/*.toc": true,
+      "**/*.lof": true,
+      "**/*.lot": true,
+      "**/*.bbl": true,
+      "**/*.blg": true,
+      "**/*.idx": true,
+      "**/*.ilg": true,
+      "**/*.ind": true,
+      "**/*.synctex.gz": true,
+      "**/*.spl": true,
+      "**/*.fdb_latexmk": true,
+      "**/.latexmk": true,
+      "**/_build": true,
+      "**/build": true,
+      "**/output": true,
+      "**/*.fls": true,
+      "**/*.gz": true,
+      "**/*.pdf": true         // You might want to exclude PDFs from search as well
+    }
+  }
